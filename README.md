@@ -1,11 +1,14 @@
 # Overview
 
-The purpose of this project is simply to track changes in the AWS Landing Zone template.
+1) simply to track changes in the AWS Landing Zone template.
+2) init steps to set up aws landing zone.
 
 [latest Release Notes](https://solutions-reference.s3.amazonaws.com/aws-landing-zone/latest/release_notes.html)
 
 ### Scheduled Check
-This [runs daily on Travis CI](https://travis-ci.org/ozbillwang/aws-landing-zone-initiation).
+[Runs daily on Travis CI to check if there are new templates](https://travis-ci.org/ozbillwang/aws-landing-zone-initiation).
+
+If there is, update cfn template in repo with new release tag.
 
 ### Usage
 
