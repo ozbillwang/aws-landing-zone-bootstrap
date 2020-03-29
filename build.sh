@@ -2,7 +2,7 @@
 
 # Prerequisite
 # Make sure you set secret enviroment variables in Travis CI
-# API_TOKEN
+# GITHUB_TOKEN
 
 # set -ex
 
@@ -35,6 +35,7 @@ if [[ ( $sum -ne 1 ) || ( ${REBUILD} == "true" ) ]];then
     git config user.email "ci"
     echo "Create & Push Tag"
     git tag ${latest}
+    git remote set-url origin https://${GITHUB_TOKEN}@github.com/ozbillwang/aws-landing-zone-initiation.git > /dev/null 2>&1
     git push -u origin master --tags
   fi
 
