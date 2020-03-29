@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solution Release Notes</title>
+  </head>
+  <body>
+  <div>
+
+  <h1>Release History</h1>
+  <section>
+    <ul>
+      <!-- Link to every version in the page -->
+      <li><a href="#2.3.1">v2.3.1</a></li>
+      <li><a href="#2.3.0">v2.3.0</a></li>
+      <li><a href="#2.2.0">v2.2.0</a></li>
+      <li><a href="#2.1.0">v2.1.0</a></li>
+      <li><a href="#2.0.3">v2.0.3</a></li>
+      <li><a href="#2.0.2">v2.0.2</a></li>
+      <li><a href="#2.0.1">v2.0.1</a></li>
+      <li><a href="#2.0.0">v2.0.0</a></li>
+      <li><a href="#1.0.3">v1.0.3</a></li>
+      <li><a href="#1.0.2">v1.0.2</a></li>
+      <li><a href="#1.0.1">v1.0.1</a></li>
+      <li><a href="#1.0.0">v1.0.0</a></li>
+    </ul>
+  </section>
+
+
+  <h1>Release notes</em></h1>
+      <h2 id="2.3.1">
+        v2.3.1<span>(2019-12-20)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Updated to Nodejs12.x runtime</li>
+          <li>Updated to Python3.8 runtime</li>
+          <li>Added public IP address and cfn-signal to RDGW template launch config</li>
+        </ul>
+      <h2>
+      <h2 id="2.3.0">
+        v2.3.0<span>(2019-10-24)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Added an AWS Lambda function to publish new Service Catalog Add-On Products.</li>
+          <li>Added a CloudWatch Event (CWE) to run Add-On publisher lambda function once a day.</li>
+          <li>Added parameter to initiation template to disable auto-update Add-On portfolio mechanism.</li>
+          <li>Added parameter to specify an update notification email if auto-update functionality is enabled.</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>Fixed error handling of intermittent issue: during new account creation an exception is thrown if STS service has not been enabled due to account initialization. The bug fix will force a retry after 5 minutes.</li>
+          <li>Handled Scaling Issue with Service Catalog API (search_provisioned_product). The API response does not return all the provisioned products in the response pages if there are more than 100 provisioned products. We added "sortBy" key in the API to restore this behavior.</li>
+        </ul>
+      <h2>
+      <h2 id="2.2.0">
+        v2.2.0<span>(2019-07-30)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>RSS Feed Notifications for future releases</li>
+          <li>Deletion Mechanism for the Baseline Resources in the CodePipeline</li>
+          <li>Add SCP Policies (preventive guardrails) to protect resources managed by AWS Landing Zone (feature parity with AWS Control Tower Guardrails)</li>
+          <li>Add solution prefix to the resources created by the solution (feature parity with AWS Control Tower Guardrails)</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>Parallel LaunchAVM State Machine executions - deploy/update batch of accounts per execution</li>
+          <li>Added retry mechanism in LaunchAVM State Machine to handle exceptions during provisioned product update.</li>
+          <li>Update S3 prefix with organization id for Cloudtrail and Config logs in Log Archive account</li>
+          <li>Added metadata and/or updated template with reduced permissions per CFN-Nag warnings.</li>
+          <li>Add retain policy to protect the resources from deletion (VPC Resources and Active Directory Resource (Add-On))</li>
+          <li>Support for Boolean and None-Type Parameters values in Add-On Products</li>
+          <li>Automatically remove unnecessary white spaces in the SCP policies to handle SCP (size) limits</li>
+          <li>Fixes SCP Stage failure due to SSM parameter store value limit. Use S3 to store SCP policy.</li>
+          <li>Fixes undefined password issue issue in the IAM Password policy baseline resource</li>
+          <li>Fixes LaunchAVM State Machine error - reached maximum (25,000) entries in the state machine execution history</li>
+          <li>Fixes Handhshake State Machine error - unable to get master detector id </li>
+        </ul>
+      <h2>
+      <h2 id="2.1.0">
+        v2.1.0<span>(2019-05-17)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Support Nested OU structure</li>
+          <li>Apply SCP at OU level, not at account level anymore</li>
+          <li>Add the new input parameter for the LZ Initiation template to enable "AWS Security Monitoring" in all regions (production) vs current region (Immersion Day)</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>SSO Add-On change in all available regions</li>
+          <li>Centralized Logging Add-On to retain cognito user pool & ES domain once the Add-on is deleted.</li>
+          <li>Update CodeBuild project image</li>
+          <li>Change due to STS Global Endpoint Deprecation</li>
+          <li>Core Resource Stage Optimization, if the core resource template/parameter/account/region does not change, it will skip the update stack set.</li>
+          <li>Service Catalog Stage Optimization, skip creating a new version if no changes were made in AVM (This improves LaunchAVM Stage - Currently everytime the pipeline runs, it create the new version of AVM. With this optimization, if nothing has changed in AVM, it will not generate the new version of AVM service catalog product.)</li>
+          <li>Unable to deploy AVM in US-West-1, AZ Enumeration issue</li>
+          <li>Landing zone API throttle limit exceed error while describing stack</li>
+          <li>Manifest with only the PRIMARY account in 'core' OU fails</li>
+          <li>LaunchAVM is moving the Core account to incorrect OU</li>
+          <li>Create "add-on" folder at the same level as manifest.yaml</li>
+          <li>Handle assume role failure in AVM for new account</li>
+          <li>Handshake State Machine - metric stage fail</li>
+          <li>CFN_NAG package installation failure due to Ruby 2.2.X EOL</li>
+          <li>CodeBuild validation stage failure due to windows style carriage return in manifest</li>
+          <li>Intermittent CodeBuild stage failure due to S3 error: Access Denied</li>
+          <li>AVM fails to provision new accounts after new region launch (HKG)</li>
+          <li>Changing Security Account Name in Manifest Breaks GuardDutyMemberof Custom Resource</li>
+          <li>[Centralized Logging Add-On] Lambda Env Variable Case mismatch</li>
+          <li>GuardDuty Notification Bug</li>
+        </ul>
+      <h2>
+      <h2 id="2.0.3">
+        v2.0.3<span>(2019-04-02)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Update for templates/aws_baseline/aws-landing-zone-iam-password-policy.template due to NodeJS6.10 EOL</li>
+        </ul>
+      <h2>
+      <h2 id="2.0.2">
+        v2.0.2<span>(2019-03-18)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Fixes the bug introduced in v2.0.1 where the LaunchAVM stage of pipeline attempted to remove the existing VPCs provisioned from AVM in the existing vended accounts</li>
+        </ul>
+      <h2>
+      <h2 id="2.0.1">
+        v2.0.1<span>(2019-02-26)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Fixes the issue of when the LandingZone pipeline completes, it may leave one or more accounts without the desired SCP(s) attached to it. This fix will require a manual update to file templates/aws_baseline/aws-landing-zone-avm.template.j2 in customer's Landing Zone Configuration ZIP file</li>
+          <li>Fixes for StackSet State Machine to be able to update the override parameters on the stack instances. It does so by invoking Update StackInstance on the existing stacks only if it has the parameter override.</li>
+          <li>The last stage of pipeline (LaunchAVM) and the LaunchAVM State Machine shows more detailed logging when it fails.</li>
+          <li>Adding the new OU to Manifest does not require it to associate with any SCP.</li>
+          <li>The last stage of pipeline (LaunchAVM) can now handle the SUSPENDED accounts inside a LZ managed OU. The account will be moved out of the OU to 'root'
+Optimizations for "BaselineResource" stage of pipeline to execute faster, it will no longer perform the UpdateStackSet workflow, if the template and parameter files have not been updated since the last pipeline run. For example, if user has not modified the templates/parameters files for any of the baseline resources, than it will skip the UpdateStackSet for all the baseline resources.</li>
+        </ul>
+      <h2>
+      <h2 id="2.0.0">
+        v2.0.0<span>(2018-11-14)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Introduces Add-on feature, which allows the partners, ISVs and LZ experts to share their turn-key solutions with all the Landing Zone customers by creating the micro-configuration zip file and packaging it within the given guidelines (see developer guide for details)</li>
+          <li>Out-of-the-box Add-on products, available as Service Catalog products for Centralized Logging & AWS Managed AD and Directory Connector for AWS SSO</li>
+          <li>Added generic Handshake State Machine to perform invite/accept workflow steps for VPC peering, Amazon GuardDuty, can be extended for other APIs.</li>
+          <li>Support remotely sourced templates and parameters in manifest.yaml for CoreResource & BaselineResource</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>Option to never expire password for AD connector user.</li>
+          <li>Template constraint for AVM product to allow VPC peering only for private subnet network type.</li>
+          <li>Updated the Service Catalog SM to apply the Template Constraint Rules on SC Products</li>
+          <li>Generation (change) and validation (new) of the AVM template moved to BUILD stage from Service Catalog Stage</li>
+          <li>Changed the default options for RDGW instance type to t2.micro</li>
+          <li>Fix Config & Config Rules can be deployed in multiple regions</li>
+          <li>Fix AVM Input validation to check if the user selects the Public only VPC pattern than Peering option must be false</li>
+          <li>Fix if more than one VPC with the same CIDR attempts to peer with Shared services VPC, second time AVM fails and rolls back, but also deletes the routes added by the first VPC</li>
+          <li>Fix IAM Password Policy stack update process</li>
+          <li>Fix for adding new AVM parameter(s) does not break the "LaunchAVM" stage of the pipeline.</li>
+        </ul>
+        <h3>Removed</h3>
+        <ul>
+          <li>Removed the Optional products</li>
+        </ul>
+      <h2>
+      <h2 id="1.0.3">
+        v1.0.3<span>(2018-12-19)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Fixes an issue where the AD Connector user password is logged to CloudWatch Logs</li>
+          <li>Replaces expired RDGW AMI IDs with an SSM parameter to get the latest Windows AMI</li>
+        </ul>
+      <h2>
+      <h2 id="1.0.2">
+        v1.0.2<span>(2018-07-24)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Handle a case if OU list is returned as an empty list</li>
+          <li>DescribeParameters api returning empty list; Fixed by using ParameterFilters instead of Filters</li>
+          <li>Fixes for AVM template for the default routes are not pointing to the nat gateways/instances due to some incorrect condition chaining</li>
+          <li>AVM fails to do VPC peering if the account name has a space in it e.g. 'Test Account'</li>
+          <li>Allow '+' sign in CLV2 email address input parameters</li>
+          <li>Adding explicit DependsOn for AWS::Logs::SubscriptionFilter in CLV2 spoke template</li>
+          <li>Allow .(period) in the email address parameter</li>
+          <li>Sanitize OU Names with space</li>
+        </ul>
+      <h2>
+      <h2 id="1.0.1">
+        v1.0.1<span>(2018-07-10)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Fix for to limit the length of state machine name < 80 characters</li>
+          <li>Fix for the CLV primary template separating out the domain names for ES & Cognito</li>
+          <li>Fix for the CLV primary template to save updated domain endpoint name in SSM parameter (without https://)</li>
+          <li>Updated CLV spoke template to stream the CloudTrail logs to ES domain</li>
+          <li>Document update – SSM Parameter keys for AD domain admin user and password (Step 4.3 and 4.4)</li>
+        </ul>
+      <h2>
+      <h2 id="1.0.0">
+        v1.0.0<span>(2018-06-29)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Initial stable Release of AWS Landing Zone Solution</li>
+        </ul>
+      <h2>
+    </div>
+  </body>
+</html>
+<!-- Footer for Release Notes -->
