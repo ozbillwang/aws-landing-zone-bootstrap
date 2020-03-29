@@ -19,6 +19,7 @@ export AWS_REGION=us-east-1
 aws iam create-role --role-name AWSCloudFormationStackSetExecutionRole --assume-role-policy-document file://templates/assume-role.json
 aws iam attach-role-policy --role-name AWSCloudFormationStackSetExecutionRole --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 
+# Below task is optional.
 # Remove aws config already provisioned
 # (future work is to add exception if aws config already exist)
 aws configservice describe-delivery-channels
@@ -26,3 +27,36 @@ aws configservice describe-configuration-recorders
 aws configservice delete-configuration-recorder --configuration-recorder-name default
 aws configservice delete-delivery-channel --delivery-channel-name default
 ```
+
+3) repeat task 2 three times for these accounts: 
+
+```
+Shared Services Account
+Log Archive Account
+Security Account
+```
+
+4) apply the cfn template:
+
+https://s3.amazonaws.com/solutions-reference/aws-landing-zone/latest/aws-landing-zone-initiation.template
+
+It will be failed.
+
+5) remove uselss regions
+
+In my case, I got error
+
+```
+Region ap-east-1 is not supported: ClientError
+```
+So I remove above region from the file [manifest.yaml](_aws-landing-zone-configuration.zip/manifest.yaml)
+
+6) change source of codepipeline `AWS-Landing-Zone-CodePipeline` from s3 to git (github or bitbucket cloud)
+
+7) trigger the codepipeline again.
+
+### reference
+
+[aws landing zone user guide](http://www.awslandingzone.com/guides/aws-landing-zone-user-guide.pdf)
+[aws landing zone developer guide]( http://www.awslandingzone.com/guides/aws-landing-zone-developer-guide.pdf)
+[aws landing zone implementation guide](http://www.awslandingzone.com/guides/aws-landing-zone-implementation-guide.pdf)
