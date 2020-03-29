@@ -6,7 +6,7 @@
 
 # set -ex
 
-latest=`docker run -t --rm alpine/xml sh -c "curl -s https://s3.amazonaws.com/solutions-reference/aws-landing-zone/latest/aws-landing-zone-initiation.template |yq -r .Outputs.LandingZoneSolutionVersion.Value"`
+latest=`docker run --rm alpine/xml sh -c 'curl -s https://s3.amazonaws.com/solutions-reference/aws-landing-zone/latest/aws-landing-zone-initiation.template |yq -r .Outputs.LandingZoneSolutionVersion.Value'`
 
 echo ${latest}
 
