@@ -40,7 +40,7 @@ Security Account
 
 https://s3.amazonaws.com/solutions-reference/aws-landing-zone/latest/aws-landing-zone-initiation.template
 
-It will be failed.
+It will fail.
 
 5) remove uselss regions
 

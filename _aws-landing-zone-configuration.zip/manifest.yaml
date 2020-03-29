@@ -34,7 +34,6 @@ organizational_units:
             deploy_method: stack_set
             # This SNS Topic needs to be deployed in ALL the regions where AWS Config service is enabled. (See baseline_resources: EnableConfig)
             regions:
-              - ap-east-1
               - ap-northeast-1
               - ap-northeast-2
               - ap-south-1
@@ -62,7 +61,6 @@ organizational_units:
             parameter_file: parameters/core_accounts/aws-landing-zone-guardduty-master.json
             deploy_method: stack_set
             regions:
-              - ap-east-1
               - ap-northeast-1
               - ap-northeast-2
               - ap-south-1
@@ -211,7 +209,6 @@ baseline_resources:
     parameter_file: parameters/aws_baseline/aws-landing-zone-enable-config.json
     deploy_method: stack_set
     regions:
-      - ap-east-1
       - ap-northeast-1
       - ap-northeast-2
       - ap-south-1
@@ -252,7 +249,6 @@ baseline_resources:
     parameter_file: parameters/aws_baseline/aws-landing-zone-config-rules.json
     deploy_method: stack_set
     regions:
-      - ap-east-1
       - ap-northeast-1
       - ap-northeast-2
       - ap-south-1
