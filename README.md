@@ -31,7 +31,7 @@ aws configservice delete-configuration-recorder --configuration-recorder-name de
 aws configservice delete-delivery-channel --delivery-channel-name default
 ```
 
-3) repeat task 2 three times for these accounts: 
+3) repeat task 1 and 2 three times for these accounts: 
 
 ```
 Shared Services Account
