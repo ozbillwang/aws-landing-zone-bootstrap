@@ -61,5 +61,7 @@ So I remove above region from the file [manifest.yaml](_aws-landing-zone-configu
 ### reference
 
 [aws landing zone user guide](http://www.awslandingzone.com/guides/aws-landing-zone-user-guide.pdf)
+
 [aws landing zone developer guide]( http://www.awslandingzone.com/guides/aws-landing-zone-developer-guide.pdf)
+
 [aws landing zone implementation guide](http://www.awslandingzone.com/guides/aws-landing-zone-implementation-guide.pdf)
