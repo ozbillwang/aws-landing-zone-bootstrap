@@ -10,6 +10,7 @@
   <section>
     <ul>
       <!-- Link to every version in the page -->
+      <li><a href="#2.4.0">v2.4.0</a></li>
       <li><a href="#2.3.1">v2.3.1</a></li>
       <li><a href="#2.3.0">v2.3.0</a></li>
       <li><a href="#2.2.0">v2.2.0</a></li>
@@ -27,6 +28,26 @@
 
 
   <h1>Release notes</em></h1>
+      <h2 id="2.4.0">
+        v2.4.0<span>(2020-05-01)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Enable automatic key rotation for the AWS KMS key: AwsLandingZoneKMSKey</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>Optimized stack instance deployment workflow - consume 60% less time to deploy same number of stack instances</li>
+          <li>Reduced stack set operation fault tolerance to 10 percent</li>
+          <li>Optimized LauncAVM stage to reduce throttling exceptions</li>
+          <li>Change IAM Password Policy baseline resource runtime from NodeJS to Python to avoid future NodeJS updates</li>
+          <li>Updated all python3.6 runtimes to python 3.8 (and 3.7 for inline lambda functions)</li>
+          <li>Added retry mechanism for AWS Organizations APIs</li>
+          <li>Updated state machine execution names in LaunchAVM stage to avoid name conflict exception.</li>
+          <li>Use Virtual Hosted-Style URLs (path-style URLs will be deprecated in Sept 2020)</li>
+          <li>Use regional endpoint for S3 APIs</li>
+        </ul>
+      <h2>
       <h2 id="2.3.1">
         v2.3.1<span>(2019-12-20)</span>
       </h2>
