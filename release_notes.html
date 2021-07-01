@@ -10,6 +10,10 @@
   <section>
     <ul>
       <!-- Link to every version in the page -->
+      <li><a href="#2.4.3">v2.4.3</a></li>
+      <li><a href="#2.4.2">v2.4.2</a></li>
+      <li><a href="#2.4.1">v2.4.1</a></li>
+      <li><a href="#2.4.0">v2.4.0</a></li>
       <li><a href="#2.3.1">v2.3.1</a></li>
       <li><a href="#2.3.0">v2.3.0</a></li>
       <li><a href="#2.2.0">v2.2.0</a></li>
@@ -27,6 +31,62 @@
 
 
   <h1>Release notes</em></h1>
+      <h2 id="2.4.3">
+        v2.4.3<span>(2021-06-25)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Added option to enable concurrency to deploy StackSets operations in regions in parallel.</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>Update CodeBuild Image to standard:5.0</li>
+          <li>Add retry mechanism for describe CloudFormation APIs.</li>
+          <li>Optimize rsync command in merge scripts (Build Stage).</li>
+          <li>Refactor Boto3Session class for all the AWS service modules.</li>
+          <li>Support pagination for Service Catalog list_portfolios API responses.</li>
+        </ul>
+      <h2>
+      <h2 id="2.4.2">
+        v2.4.2<span>(2021-01-15)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Pinned versions for all the third-party packages.</li>
+          <li>Updated IAM role to use new AWS Lambda Function managed policy 'AWSLambda_FullAccess'</li>
+          <li>Fixed bug related to describe_parameter API</li>
+        </ul>
+      <h2>
+      <h2 id="2.4.1">
+        v2.4.1<span>(2020-09-19)</span>
+      </h2>
+        <h3>Changed</h3>
+        <ul>
+          <li>Updated the AWS CodeBuild image to the latest available version (aws/codebuild/standard:4.0)</li>
+          <li>Fix issue related to incompatibility between latest version of BotoCore and AWS CLI. Ref:[Boto3 Issue #2596](https://github.com/boto/boto3/issues/2596)</li>
+          <li>Updated AWS Config managed policy name to use the new managed policy name that removes the “S3:GetObject” permission.</li>
+        </ul>
+      <h2>
+      <h2 id="2.4.0">
+        v2.4.0<span>(2020-05-01)</span>
+      </h2>
+        <h3>Added</h3>
+        <ul>
+          <li>Enable automatic key rotation for the AWS KMS key: AwsLandingZoneKMSKey</li>
+        </ul>
+        <h3>Changed</h3>
+        <ul>
+          <li>Optimized stack instance deployment workflow - consume 60% less time to deploy same number of stack instances</li>
+          <li>Reduced stack set operation fault tolerance to 10 percent</li>
+          <li>Optimized LauncAVM stage to reduce throttling exceptions</li>
+          <li>Change IAM Password Policy baseline resource runtime from NodeJS to Python to avoid future NodeJS updates</li>
+          <li>Updated all python3.6 runtimes to python 3.8 (and 3.7 for inline lambda functions)</li>
+          <li>Added retry mechanism for AWS Organizations APIs</li>
+          <li>Updated state machine execution names in LaunchAVM stage to avoid name conflict exception.</li>
+          <li>Use Virtual Hosted-Style URLs (path-style URLs will be deprecated in Sept 2020)</li>
+          <li>Use regional endpoint for S3 APIs</li>
+        </ul>
+      <h2>
       <h2 id="2.3.1">
         v2.3.1<span>(2019-12-20)</span>
       </h2>
